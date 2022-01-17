@@ -17,7 +17,6 @@ class _BodyState extends State<Body> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   var _email = '';
   var _password = '';
-  var _passwordConfirm = '';
   var _name = '';
   var _phone = '';
   var _cpf = '';
@@ -63,7 +62,8 @@ class _BodyState extends State<Body> {
           _isLoading
               ? const CircularProgressIndicator()
               : RoundedInputField(
-                  hintText: "Email",
+                  labelText: "Email",
+                  hintText: "name@gmail.com",
                   icon: Icons.email,
                   onChanged: (value) {
                     setState(() {
@@ -86,9 +86,10 @@ class _BodyState extends State<Body> {
                   },
                 ),
           _isLoading
-              ? const CircularProgressIndicator()
+              ? Container()
               : RoundedInputField(
-                  hintText: "Nome",
+                  labelText: "Nome",
+                  hintText: "Fulano de Tal",
                   icon: Icons.person,
                   onChanged: (value) {
                     setState(() {
@@ -111,9 +112,10 @@ class _BodyState extends State<Body> {
                   },
                 ),
           _isLoading
-              ? const CircularProgressIndicator()
+              ? Container()
               : RoundedInputField(
-                  hintText: "Telefone",
+                  labelText: "Telefone",
+                  hintText: "41 99999-9999",
                   icon: Icons.phone,
                   keyboardType: TextInputType.phone,
                   onChanged: (value) {
@@ -137,9 +139,10 @@ class _BodyState extends State<Body> {
                   },
                 ),
           _isLoading
-              ? const CircularProgressIndicator()
+              ? Container()
               : RoundedInputField(
-                  hintText: "CPF",
+                  labelText: "CPF",
+                  hintText: "000.000.000-00",
                   icon: Icons.badge,
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
@@ -163,9 +166,10 @@ class _BodyState extends State<Body> {
                   },
                 ),
           _isLoading
-              ? const CircularProgressIndicator()
+              ? Container()
               : RoundedInputField(
-                  hintText: "CNPJ",
+                  labelText: "CNPJ",
+                  hintText: "00.000.000/0000-00",
                   icon: Icons.business,
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
@@ -186,9 +190,10 @@ class _BodyState extends State<Body> {
                   },
                 ),
           _isLoading
-              ? const CircularProgressIndicator()
+              ? Container()
               : RoundedPasswordField(
-                  hintText: "Senha",
+                  labelText: "Senha",
+                  hintText: "********",
                   onChanged: (value) {
                     setState(() {
                       _password = value ?? '';
@@ -210,19 +215,10 @@ class _BodyState extends State<Body> {
                   },
                 ),
           _isLoading
-              ? const CircularProgressIndicator()
+              ? Container()
               : RoundedPasswordField(
-                  hintText: "Repetir Senha",
-                  onChanged: (value) {
-                    setState(() {
-                      _passwordConfirm = value ?? '';
-                    });
-                  },
-                  onSaved: (value) {
-                    setState(() {
-                      _passwordConfirm = value ?? '';
-                    });
-                  },
+                  labelText: "Repetir Senha",
+                  hintText: "********",
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor digite uma senha';
@@ -250,11 +246,13 @@ class _BodyState extends State<Body> {
                     submit(authService);
                   },
                 ),
-          RoundedOutlineButton(
-              text: "Voltar",
-              onPressed: () {
-                Navigator.pop(context);
-              }),
+          _isLoading
+              ? Container()
+              : RoundedOutlineButton(
+                  text: "Voltar",
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }),
           SizedBox(height: size.height * 0.05),
         ],
       ),

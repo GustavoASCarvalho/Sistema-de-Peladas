@@ -5,6 +5,7 @@ import 'text_field_container.dart';
 
 class RoundedInputField extends StatelessWidget {
   final String hintText;
+  final String labelText;
   final IconData icon;
   final Function(String?)? onChanged;
   final String? Function(String?)? validator;
@@ -19,6 +20,7 @@ class RoundedInputField extends StatelessWidget {
     this.validator,
     this.onSaved,
     this.keyboardType,
+    required this.labelText,
   }) : super(key: key);
 
   @override
@@ -36,7 +38,11 @@ class RoundedInputField extends StatelessWidget {
             color: kPrimaryColor,
           ),
           hintText: hintText,
-          hintStyle: const TextStyle(color: Colors.white),
+          labelText: labelText,
+          labelStyle: const TextStyle(color: Colors.white),
+          hintStyle: const TextStyle(
+            color: Color.fromARGB(127, 255, 255, 255),
+          ),
           border: InputBorder.none,
         ),
       ),

@@ -8,12 +8,14 @@ class RoundedPasswordField extends StatefulWidget {
   final String? Function(String?)? validator;
   final Function(String?)? onSaved;
   final String hintText;
+  final String labelText;
   const RoundedPasswordField({
     Key? key,
     this.onChanged,
     this.validator,
     this.onSaved,
     required this.hintText,
+    required this.labelText,
   }) : super(key: key);
 
   @override
@@ -40,7 +42,12 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
         onChanged: widget.onChanged,
         decoration: InputDecoration(
           hintText: widget.hintText,
-          hintStyle: const TextStyle(color: Colors.white),
+          labelText: widget.labelText,
+          labelStyle: const TextStyle(color: Colors.white),
+          hintStyle: const TextStyle(
+            color: Color.fromARGB(127, 255, 255, 255),
+            fontSize: 12,
+          ),
           icon: const Icon(
             Icons.lock,
             color: kPrimaryColor,

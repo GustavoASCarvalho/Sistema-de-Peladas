@@ -60,7 +60,8 @@ class _BodyState extends State<Body> {
             _isLoading
                 ? const CircularProgressIndicator()
                 : RoundedInputField(
-                    hintText: "Email",
+                    labelText: "Email",
+                    hintText: "name@gmail.com",
                     icon: Icons.email,
                     onChanged: (value) {
                       setState(() {
@@ -85,7 +86,8 @@ class _BodyState extends State<Body> {
             _isLoading
                 ? Container()
                 : RoundedPasswordField(
-                    hintText: "Senha",
+                    labelText: "Senha",
+                    hintText: "********",
                     onChanged: (value) {
                       setState(() {
                         _password = value!;
@@ -120,11 +122,13 @@ class _BodyState extends State<Body> {
                       submit(authService);
                     },
                   ),
-            RoundedOutlineButton(
-                text: "Voltar",
-                onPressed: () {
-                  Navigator.pop(context);
-                }),
+            _isLoading
+                ? Container()
+                : RoundedOutlineButton(
+                    text: "Voltar",
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }),
           ],
         ),
       ),
