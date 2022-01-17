@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vpfut/constants.dart';
+import 'package:vpfut/utils/constants.dart';
 import 'package:vpfut/pages/SignIn/signin_screen.dart';
 import 'package:vpfut/pages/Welcome/welcome_screen.dart';
 
 import 'package:vpfut/pages/splash.dart';
+import 'package:vpfut/repository/user_repository.dart';
 import 'package:vpfut/services/auth_service.dart';
 
 import 'pages/SignUp/signup_screen.dart';
+import 'utils/constants.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +24,12 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => AuthService(),
+        ),
+        ChangeNotifierProxyProvider<AuthService, UserRepository>(
+          create: (ctx) => UserRepository(
+            Provider.of<AuthService>(ctx, listen: false),
+          ),
+          update: (ctx, authService, anterior) => UserRepository(authService),
         ),
       ],
       builder: (ctx, _) {

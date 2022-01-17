@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vpfut/constants.dart';
+import 'package:vpfut/utils/constants.dart';
 
 class RoundedOutlineButton extends StatelessWidget {
   final String text;
