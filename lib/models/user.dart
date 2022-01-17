@@ -3,7 +3,6 @@ import 'dart:convert';
 class User {
   final String id;
   final String email;
-  final String password;
   final String name;
   final String phone;
   final String? cpf;
@@ -13,7 +12,6 @@ class User {
   User({
     required this.id,
     required this.email,
-    required this.password,
     required this.name,
     required this.phone,
     this.cpf,
@@ -25,7 +23,6 @@ class User {
   User copyWith({
     String? id,
     String? email,
-    String? password,
     String? name,
     String? phone,
     String? cpf,
@@ -36,7 +33,6 @@ class User {
     return User(
       id: id ?? this.id,
       email: email ?? this.email,
-      password: password ?? this.password,
       name: name ?? this.name,
       phone: phone ?? this.phone,
       cpf: cpf ?? this.cpf,
@@ -50,7 +46,6 @@ class User {
     return {
       'id': id,
       'email': email,
-      'password': password,
       'name': name,
       'phone': phone,
       'cpf': cpf,
@@ -64,7 +59,6 @@ class User {
     return User(
       id: map['id'] ?? '',
       email: map['email'] ?? '',
-      password: map['password'] ?? '',
       name: map['name'] ?? '',
       phone: map['phone'] ?? '',
       cpf: map['cpf'],
@@ -80,7 +74,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(id: $id, email: $email, password: $password, name: $name, phone: $phone, cpf: $cpf, cnpj: $cnpj, token: $token, expiraEm: $expiraEm)';
+    return 'User(id: $id, email: $email, name: $name, phone: $phone, cpf: $cpf, cnpj: $cnpj, token: $token, expiraEm: $expiraEm)';
   }
 
   @override
@@ -90,7 +84,6 @@ class User {
     return other is User &&
         other.id == id &&
         other.email == email &&
-        other.password == password &&
         other.name == name &&
         other.phone == phone &&
         other.cpf == cpf &&
@@ -103,7 +96,6 @@ class User {
   int get hashCode {
     return id.hashCode ^
         email.hashCode ^
-        password.hashCode ^
         name.hashCode ^
         phone.hashCode ^
         cpf.hashCode ^
