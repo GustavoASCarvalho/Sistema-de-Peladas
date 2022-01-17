@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:vpfut/pages/Welcome/welcome_screen.dart';
 import 'package:vpfut/services/auth_service.dart';
 
+import 'Home/home_screen.dart';
+
 class Splash extends StatelessWidget {
   static const routeName = '/splash';
 
@@ -12,6 +14,6 @@ class Splash extends StatelessWidget {
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
 
-    return authService.logado ? const WelcomeScreen() : const WelcomeScreen();
+    return authService.logado ? const HomeScreen() : const WelcomeScreen();
   }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vpfut/components/rounded_button.dart';
+import 'package:vpfut/components/rounded_input_field.dart';
 import 'package:vpfut/components/rounded_outline_button.dart';
-import 'package:vpfut/pages/SignIn/components/rounded_input_field.dart';
-import 'package:vpfut/pages/SignIn/components/rounded_password_field.dart';
+import 'package:vpfut/components/rounded_password_field.dart';
 import 'package:vpfut/services/auth_service.dart';
 
 class Body extends StatefulWidget {
@@ -62,7 +62,7 @@ class _BodyState extends State<Body> {
           _isLoading
               ? const CircularProgressIndicator()
               : RoundedInputField(
-                  labelText: "Email",
+                  labelText: "Email *",
                   hintText: "name@gmail.com",
                   icon: Icons.email,
                   onChanged: (value) {
@@ -88,7 +88,7 @@ class _BodyState extends State<Body> {
           _isLoading
               ? Container()
               : RoundedInputField(
-                  labelText: "Nome",
+                  labelText: "Nome *",
                   hintText: "Fulano de Tal",
                   icon: Icons.person,
                   onChanged: (value) {
@@ -114,7 +114,7 @@ class _BodyState extends State<Body> {
           _isLoading
               ? Container()
               : RoundedInputField(
-                  labelText: "Telefone",
+                  labelText: "Telefone *",
                   hintText: "41 99999-9999",
                   icon: Icons.phone,
                   keyboardType: TextInputType.phone,
@@ -141,7 +141,7 @@ class _BodyState extends State<Body> {
           _isLoading
               ? Container()
               : RoundedInputField(
-                  labelText: "CPF",
+                  labelText: "CPF *",
                   hintText: "000.000.000-00",
                   icon: Icons.badge,
                   keyboardType: TextInputType.number,
@@ -168,7 +168,7 @@ class _BodyState extends State<Body> {
           _isLoading
               ? Container()
               : RoundedInputField(
-                  labelText: "CNPJ",
+                  labelText: "CNPJ (Donos de quadras)*",
                   hintText: "00.000.000/0000-00",
                   icon: Icons.business,
                   keyboardType: TextInputType.number,
@@ -192,7 +192,7 @@ class _BodyState extends State<Body> {
           _isLoading
               ? Container()
               : RoundedPasswordField(
-                  labelText: "Senha",
+                  labelText: "Senha *",
                   hintText: "********",
                   onChanged: (value) {
                     setState(() {
@@ -217,7 +217,7 @@ class _BodyState extends State<Body> {
           _isLoading
               ? Container()
               : RoundedPasswordField(
-                  labelText: "Repetir Senha",
+                  labelText: "Repetir Senha *",
                   hintText: "********",
                   validator: (value) {
                     if (value == null || value.isEmpty) {

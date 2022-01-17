@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vpfut/components/rounded_button.dart';
+import 'package:vpfut/components/rounded_input_field.dart';
 import 'package:vpfut/components/rounded_outline_button.dart';
+import 'package:vpfut/components/rounded_password_field.dart';
 import 'package:vpfut/services/auth_service.dart';
-
-import 'rounded_input_field.dart';
-import 'rounded_password_field.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);

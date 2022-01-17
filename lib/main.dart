@@ -8,6 +8,7 @@ import 'package:vpfut/pages/splash.dart';
 import 'package:vpfut/repository/user_repository.dart';
 import 'package:vpfut/services/auth_service.dart';
 
+import 'pages/Home/home_screen.dart';
 import 'pages/SignUp/signup_screen.dart';
 import 'utils/constants.dart';
 
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
           ),
           routes: {
             Splash.routeName: (ctx) => const Splash(),
+            HomeScreen.routeName: (ctx) => const HomeScreen(),
             WelcomeScreen.routeName: (ctx) => const WelcomeScreen(),
             SignInScreen.routeName: (ctx) => const SignInScreen(),
             SignUpScreen.routeName: (ctx) => const SignUpScreen(),

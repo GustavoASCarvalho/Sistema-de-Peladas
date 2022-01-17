@@ -8,8 +8,18 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Body(),
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.jpg'),
+            fit: BoxFit.fitWidth,
+            alignment: Alignment.topCenter,
+            opacity: 0.2,
+          ),
+        ),
+        child: const Body(),
+      ),
     );
   }
 }
