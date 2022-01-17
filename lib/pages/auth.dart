@@ -64,19 +64,23 @@ class _AuthState extends State<Auth> {
         Provider.of<AuthService>(context, listen: false);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sistema de monitoramento marinho'),
-      ),
+      backgroundColor: Colors.grey[800],
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.fromLTRB(80, 8, 80, 8),
         child: Form(
           key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(
+                height: 300,
+                width: 300,
+                child:
+                    Image.asset('assets/images/logo.png', fit: BoxFit.contain),
+              ),
               _CustomForm(
-                label: "Email",
+                label: "E-mail",
                 hint: "Digite seu email",
                 icon: const Icon(Icons.email),
                 save: (text) {
@@ -225,6 +229,7 @@ class _CustomForm extends StatelessWidget {
       keyboardType: keyboardType,
       obscureText: obscureText,
       decoration: InputDecoration(
+        focusColor: Colors.green,
         suffixIcon: sufixIcon,
         prefixIcon: icon,
         labelText: label,

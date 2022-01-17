@@ -56,9 +56,8 @@ class AuthService with ChangeNotifier {
     _user = User(
       id: data['localId'],
       email: email,
-      name: data['name'],
-      phone: data['phone'],
-      password: data['password'],
+      name: 'gusteavop',
+      phone: '+5511999999999',
       token: data['idToken'],
       expiraEm: DateTime.now().add(
         Duration(
