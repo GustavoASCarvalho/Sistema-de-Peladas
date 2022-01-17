@@ -4,12 +4,11 @@ import 'components/body.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
-  static const routeName = '/welcome';
+  static const routeName = '/signin';
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.black12,
       body: Body(),
     );
   }

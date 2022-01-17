@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../constants.dart';
+import 'package:vpfut/components/rounded_button.dart';
+import 'package:vpfut/components/rounded_outline_button.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,55 +10,24 @@ class Home extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        SizedBox(
-          width: size.width * 0.8,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(5),
-            child: TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Entrar',
-                style: TextStyle(color: Colors.white, fontSize: 18),
-              ),
-              style: TextButton.styleFrom(
-                backgroundColor: kPrimaryColor,
-                padding: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 10,
-                ),
-              ),
-            ),
-          ),
+        RoundedButton(
+          text: 'Entrar',
+          onPressed: () {
+            // SchedulerBinding.instance?.addPostFrameCallback((_) {
+            Navigator.pushNamed(context, '/signin');
+            // });
+          },
         ),
         SizedBox(
           height: size.height * 0.01,
         ),
-        SizedBox(
-          width: size.width * 0.8,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(5),
-            child: TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Registrar',
-                style: TextStyle(color: kPrimaryColor, fontSize: 18),
-              ),
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 10,
-                ),
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(
-                    color: kPrimaryColor,
-                    width: 1,
-                    style: BorderStyle.solid,
-                  ),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-              ),
-            ),
-          ),
+        RoundedOutlineButton(
+          text: 'Cadastrar',
+          onPressed: () {
+            // SchedulerBinding.instance?.addPostFrameCallback((_) {
+            Navigator.pushNamed(context, '/signup');
+            // });
+          },
         ),
       ],
     );

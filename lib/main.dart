@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vpfut/constants.dart';
+import 'package:vpfut/pages/SignIn/signin_screen.dart';
 import 'package:vpfut/pages/Welcome/welcome_screen.dart';
 
 import 'package:vpfut/pages/splash.dart';
 import 'package:vpfut/services/auth_service.dart';
+
+import 'pages/SignUp/signup_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,11 +31,13 @@ class MyApp extends StatelessWidget {
           initialRoute: WelcomeScreen.routeName,
           theme: ThemeData(
             primaryColor: kPrimaryColor,
-            scaffoldBackgroundColor: Colors.black38,
+            scaffoldBackgroundColor: kPrimaryLightColor,
           ),
           routes: {
-            WelcomeScreen.routeName: (ctx) => const WelcomeScreen(),
             Splash.routeName: (ctx) => const Splash(),
+            WelcomeScreen.routeName: (ctx) => const WelcomeScreen(),
+            SignInScreen.routeName: (ctx) => const SignInScreen(),
+            SignUpScreen.routeName: (ctx) => const SignUpScreen(),
           },
         );
       },
