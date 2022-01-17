@@ -5,7 +5,7 @@ class User {
   final String email;
   final String name;
   final String phone;
-  final String? cpf;
+  final String cpf;
   final String? cnpj;
   final String token;
   final DateTime expiraEm;
@@ -14,7 +14,7 @@ class User {
     required this.email,
     required this.name,
     required this.phone,
-    this.cpf,
+    required this.cpf,
     this.cnpj,
     required this.token,
     required this.expiraEm,

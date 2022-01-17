@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vpfut/components/rounded_button.dart';
+import 'package:vpfut/components/rounded_outline_button.dart';
 import 'package:vpfut/services/auth_service.dart';
 
 import 'rounded_input_field.dart';
@@ -50,17 +51,17 @@ class _BodyState extends State<Body> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const SizedBox(height: 10),
+            SizedBox(height: size.height * 0.10),
             Image.asset(
               "assets/images/logo.png",
-              width: size.width * 0.6,
-              height: size.width * 0.6,
+              width: size.width * 0.5,
             ),
             SizedBox(height: size.height * 0.05),
             _isLoading
                 ? const CircularProgressIndicator()
                 : RoundedInputField(
                     hintText: "Email",
+                    icon: Icons.email,
                     onChanged: (value) {
                       setState(() {
                         _email = value ?? '';
@@ -84,6 +85,7 @@ class _BodyState extends State<Body> {
             _isLoading
                 ? Container()
                 : RoundedPasswordField(
+                    hintText: "Senha",
                     onChanged: (value) {
                       setState(() {
                         _password = value!;
@@ -118,6 +120,11 @@ class _BodyState extends State<Body> {
                       submit(authService);
                     },
                   ),
+            RoundedOutlineButton(
+                text: "Voltar",
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
           ],
         ),
       ),

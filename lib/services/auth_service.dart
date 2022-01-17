@@ -13,8 +13,15 @@ class AuthService with ChangeNotifier {
   User? get usuario => _user;
   bool get logado => _loggedIn;
 
-  Future<void> _signUpOrIn(String email, String password,
-      {bool register = false}) async {
+  Future<void> _signUpOrIn(
+    String email,
+    String password, {
+    bool register = false,
+    String name = '',
+    String phone = '',
+    String cpf = '',
+    String cnpj = '',
+  }) async {
     var endPoint = '';
 
     if (register) {
@@ -56,9 +63,11 @@ class AuthService with ChangeNotifier {
     _user = User(
       id: data['localId'],
       email: email,
-      name: 'gusteavop',
-      phone: '+5511999999999',
+      name: name,
+      phone: phone,
       token: data['idToken'],
+      cpf: cpf,
+      cnpj: cnpj,
       expiraEm: DateTime.now().add(
         Duration(
           seconds: int.parse(data['expiresIn']),
@@ -71,9 +80,21 @@ class AuthService with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> signUp(String email, String senha) => _signUpOrIn(
+  Future<void> signUp(
+    String email,
+    String senha,
+    String name,
+    String phone,
+    String cpf,
+    String cnpj,
+  ) =>
+      _signUpOrIn(
         email,
         senha,
+        name: name,
+        phone: phone,
+        cpf: cpf,
+        cnpj: cnpj,
         register: true,
       );
 
