@@ -77,6 +77,9 @@ class AuthService with ChangeNotifier {
 
     _loggedIn = true;
 
+    print('logou');
+    print(_user);
+
     notifyListeners();
   }
 
@@ -106,6 +109,7 @@ class AuthService with ChangeNotifier {
   logout() {
     _user = null;
     _loggedIn = false;
+    print('saiu');
     notifyListeners();
   }
 }

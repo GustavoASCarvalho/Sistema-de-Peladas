@@ -29,6 +29,7 @@ class _BodyState extends State<Body> {
       });
       try {
         await authService.signIn(_email, _password);
+        Navigator.of(context).pop();
       } catch (e) {
         setState(() {
           _errorMessage = e.toString();

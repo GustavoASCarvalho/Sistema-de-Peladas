@@ -9,6 +9,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    print('signUpScreen');
     return Scaffold(
       body: Container(
         height: size.height,

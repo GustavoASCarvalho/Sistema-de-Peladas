@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Vp Fut',
-          initialRoute: WelcomeScreen.routeName,
+          initialRoute: HomeScreen.routeName,
           theme: ThemeData(
             primaryColor: kPrimaryColor,
             scaffoldBackgroundColor: kPrimaryLightColor,

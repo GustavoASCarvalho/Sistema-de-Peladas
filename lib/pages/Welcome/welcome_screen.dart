@@ -8,6 +8,7 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('WelcomeScreen.build');
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
