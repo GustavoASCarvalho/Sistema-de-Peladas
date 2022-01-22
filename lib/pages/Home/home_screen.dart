@@ -19,16 +19,16 @@ class HomeScreen extends StatelessWidget {
     var user = authServiceProvider.usuario;
 
     return Scaffold(
-      backgroundColor: kPrimaryColor,
+      backgroundColor: kPrimaryLightColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: kPrimaryLightColor,
+        backgroundColor: kPrimaryColor,
         //leading user name
         title: RichText(
           text: TextSpan(
-            text: 'Bem-Vindo, ',
+            text: 'Bem-Vindo, Erick Pinheiro',
             style: const TextStyle(
-              color: Colors.white,
+              color: kPrimaryLightColor,
               fontSize: 14,
             ),
             children: <TextSpan>[
@@ -43,6 +43,7 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(
               Icons.logout,
+              color: kPrimaryLightColor,
             ),
             onPressed: () {
               authServiceProvider.logout();
@@ -50,7 +51,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Body(),
+      body: const Body(),
     );
   }
 }
