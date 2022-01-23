@@ -75,7 +75,7 @@ class SoccerFieldBox extends StatelessWidget {
                     ),
                     Text(
                       address,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
                     Text(date),
                     RoundedButton(
