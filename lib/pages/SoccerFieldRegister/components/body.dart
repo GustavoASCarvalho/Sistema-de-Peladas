@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vpfut/components/rounded_button.dart';
 import 'package:vpfut/components/rounded_input_field.dart';
-import 'package:vpfut/components/rounded_outline_button.dart';
-import 'package:vpfut/components/text_field_container.dart';
 import 'package:vpfut/pages/SoccerFieldRegister/components/time_picker.dart';
 import 'package:vpfut/services/auth_service.dart';
 import 'package:vpfut/utils/constants.dart';
@@ -22,6 +20,7 @@ class _BodyState extends State<Body> {
   var _name = '';
   var _description = '';
   var _address = '';
+  var _url = '';
   var _isLoading = false;
   var _errorMessage = '';
 
@@ -170,6 +169,34 @@ class _BodyState extends State<Body> {
                   ),
             _isLoading
                 ? const SizedBox()
+                : RoundedInputField(
+                    labelText: "Url da imagem da quadra",
+                    hintText:
+                        "https://images.com/6ef6e892aea640c3b1f79f0f820caca5",
+                    icon: Icons.image,
+                    onChanged: (value) {
+                      setState(() {
+                        _url = value ?? '';
+                      });
+                    },
+                    onSaved: (value) {
+                      setState(() {
+                        _url = value ?? '';
+                      });
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor digite uma url';
+                      }
+                      if (!value.startsWith('http://') ||
+                          !value.startsWith('https://')) {
+                        return 'Por favor digite uma url válida';
+                      }
+                      return null;
+                    },
+                  ),
+            _isLoading
+                ? const SizedBox()
                 : const Text(
                     " Dia e horário de funcionamento",
                     style: TextStyle(
@@ -285,6 +312,42 @@ class _BodyState extends State<Body> {
                   ),
             _isLoading
                 ? const SizedBox()
+                : _quarta
+                    ? Column(
+                        children: [
+                          TimePicker(
+                            onPressed: () {
+                              showTimePicker(
+                                context: context,
+                                initialTime: _quartaBegin,
+                              ).then((value) {
+                                setState(() {
+                                  _quartaBegin = value!;
+                                });
+                              });
+                            },
+                            text:
+                                'Início: ${_quartaBegin.hour}:${_quartaBegin.minute}',
+                          ),
+                          TimePicker(
+                            onPressed: () {
+                              showTimePicker(
+                                context: context,
+                                initialTime: _quartaBegin,
+                              ).then((value) {
+                                setState(() {
+                                  _quartaBegin = value!;
+                                });
+                              });
+                            },
+                            text:
+                                'Fim: ${_quartaEnd.hour}:${_quartaEnd.minute}',
+                          ),
+                        ],
+                      )
+                    : const SizedBox(),
+            _isLoading
+                ? const SizedBox()
                 : LinkedLabelCheckbox(
                     label: 'Quinta',
                     value: _quinta,
@@ -294,6 +357,42 @@ class _BodyState extends State<Body> {
                       });
                     },
                   ),
+            _isLoading
+                ? const SizedBox()
+                : _quinta
+                    ? Column(
+                        children: [
+                          TimePicker(
+                            onPressed: () {
+                              showTimePicker(
+                                context: context,
+                                initialTime: _quintaBegin,
+                              ).then((value) {
+                                setState(() {
+                                  _quintaBegin = value!;
+                                });
+                              });
+                            },
+                            text:
+                                'Início: ${_quintaBegin.hour}:${_quintaBegin.minute}',
+                          ),
+                          TimePicker(
+                            onPressed: () {
+                              showTimePicker(
+                                context: context,
+                                initialTime: _quintaBegin,
+                              ).then((value) {
+                                setState(() {
+                                  _quintaBegin = value!;
+                                });
+                              });
+                            },
+                            text:
+                                'Fim: ${_quintaEnd.hour}:${_quintaEnd.minute}',
+                          ),
+                        ],
+                      )
+                    : const SizedBox(),
             _isLoading
                 ? const SizedBox()
                 : LinkedLabelCheckbox(
@@ -307,6 +406,41 @@ class _BodyState extends State<Body> {
                   ),
             _isLoading
                 ? const SizedBox()
+                : _sexta
+                    ? Column(
+                        children: [
+                          TimePicker(
+                            onPressed: () {
+                              showTimePicker(
+                                context: context,
+                                initialTime: _sextaBegin,
+                              ).then((value) {
+                                setState(() {
+                                  _sextaBegin = value!;
+                                });
+                              });
+                            },
+                            text:
+                                'Início: ${_sextaBegin.hour}:${_sextaBegin.minute}',
+                          ),
+                          TimePicker(
+                            onPressed: () {
+                              showTimePicker(
+                                context: context,
+                                initialTime: _sextaBegin,
+                              ).then((value) {
+                                setState(() {
+                                  _sextaBegin = value!;
+                                });
+                              });
+                            },
+                            text: 'Fim: ${_sextaEnd.hour}:${_sextaEnd.minute}',
+                          ),
+                        ],
+                      )
+                    : const SizedBox(),
+            _isLoading
+                ? const SizedBox()
                 : LinkedLabelCheckbox(
                     label: 'Sábado',
                     value: _sabado,
@@ -318,6 +452,42 @@ class _BodyState extends State<Body> {
                   ),
             _isLoading
                 ? const SizedBox()
+                : _sabado
+                    ? Column(
+                        children: [
+                          TimePicker(
+                            onPressed: () {
+                              showTimePicker(
+                                context: context,
+                                initialTime: _sabadoBegin,
+                              ).then((value) {
+                                setState(() {
+                                  _sabadoBegin = value!;
+                                });
+                              });
+                            },
+                            text:
+                                'Início: ${_sabadoBegin.hour}:${_sabadoBegin.minute}',
+                          ),
+                          TimePicker(
+                            onPressed: () {
+                              showTimePicker(
+                                context: context,
+                                initialTime: _sabadoBegin,
+                              ).then((value) {
+                                setState(() {
+                                  _sabadoBegin = value!;
+                                });
+                              });
+                            },
+                            text:
+                                'Fim: ${_sabadoEnd.hour}:${_sabadoEnd.minute}',
+                          ),
+                        ],
+                      )
+                    : const SizedBox(),
+            _isLoading
+                ? const SizedBox()
                 : LinkedLabelCheckbox(
                     label: 'Domingo',
                     value: _domingo,
@@ -327,6 +497,42 @@ class _BodyState extends State<Body> {
                       });
                     },
                   ),
+            _isLoading
+                ? const SizedBox()
+                : _domingo
+                    ? Column(
+                        children: [
+                          TimePicker(
+                            onPressed: () {
+                              showTimePicker(
+                                context: context,
+                                initialTime: _domingoBegin,
+                              ).then((value) {
+                                setState(() {
+                                  _domingoBegin = value!;
+                                });
+                              });
+                            },
+                            text:
+                                'Início: ${_domingoBegin.hour}:${_domingoBegin.minute}',
+                          ),
+                          TimePicker(
+                            onPressed: () {
+                              showTimePicker(
+                                context: context,
+                                initialTime: _domingoBegin,
+                              ).then((value) {
+                                setState(() {
+                                  _domingoBegin = value!;
+                                });
+                              });
+                            },
+                            text:
+                                'Fim: ${_domingoEnd.hour}:${_domingoEnd.minute}',
+                          ),
+                        ],
+                      )
+                    : const SizedBox(),
             _errorMessage.isNotEmpty
                 ? Text(
                     _errorMessage,
@@ -336,7 +542,7 @@ class _BodyState extends State<Body> {
             _isLoading
                 ? Container()
                 : RoundedButton(
-                    text: "Entrar",
+                    text: "Cadastrar",
                     onPressed: () {
                       submit(authService);
                     },

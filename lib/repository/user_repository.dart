@@ -25,7 +25,10 @@ class UserRepository with ChangeNotifier {
 
   List<User> get users => UnmodifiableListView(_users);
 
-  User searchById(String id) => _users.firstWhere((user) => user.id == id);
+  Future<User> searchById(String id) async {
+    await loadUsers();
+    return _users.firstWhere((user) => user.id == id);
+  }
 
   loadUsers() async {
     if (authService.logado) {

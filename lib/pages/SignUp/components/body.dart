@@ -4,6 +4,7 @@ import 'package:vpfut/components/rounded_button.dart';
 import 'package:vpfut/components/rounded_input_field.dart';
 import 'package:vpfut/components/rounded_outline_button.dart';
 import 'package:vpfut/components/rounded_password_field.dart';
+import 'package:vpfut/repository/user_repository.dart';
 import 'package:vpfut/services/auth_service.dart';
 
 class Body extends StatefulWidget {
@@ -24,7 +25,7 @@ class _BodyState extends State<Body> {
   var _isLoading = false;
   var _errorMessage = '';
 
-  submit(AuthService authService) async {
+  submit(AuthService authService, UserRepository userRepository) async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       setState(() {
@@ -32,8 +33,10 @@ class _BodyState extends State<Body> {
         _errorMessage = '';
       });
       try {
-        await authService.signUp(_email, _password, _name, _phone, _cpf, _cnpj);
-        Navigator.of(context).pop();
+        await authService
+            .signUp(
+                _email, _password, _name, _phone, _cpf, _cnpj, userRepository)
+            .then((_) => {Navigator.of(context).pop()});
       } catch (e) {
         setState(() {
           _errorMessage = e.toString();
@@ -49,6 +52,7 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final authService = Provider.of<AuthService>(context, listen: false);
+    final userRepository = Provider.of<UserRepository>(context, listen: false);
     return Form(
       key: _formKey,
       child: Column(
@@ -244,7 +248,7 @@ class _BodyState extends State<Body> {
               : RoundedButton(
                   text: "Cadastrar",
                   onPressed: () {
-                    submit(authService);
+                    submit(authService, userRepository);
                   },
                 ),
           _isLoading

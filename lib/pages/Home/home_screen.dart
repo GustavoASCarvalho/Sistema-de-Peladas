@@ -18,6 +18,9 @@ class HomeScreen extends StatelessWidget {
 
     var user = authServiceProvider.usuario;
 
+    debugPrint(user!.name);
+    debugPrint('$user');
+
     return Scaffold(
       backgroundColor: kPrimaryLightColor,
       appBar: AppBar(
@@ -26,15 +29,16 @@ class HomeScreen extends StatelessWidget {
         //leading user name
         title: RichText(
           text: TextSpan(
-            text: 'Bem-Vindo, Erick Pinheiro',
+            text: 'Bem-Vindo, ',
             style: const TextStyle(
               color: kPrimaryLightColor,
               fontSize: 14,
             ),
             children: <TextSpan>[
               TextSpan(
-                text: authServiceProvider.logado ? user!.name : '',
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                text: authServiceProvider.logado ? user.name : 'erro',
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, color: kPrimaryLightColor),
               ),
             ],
           ),

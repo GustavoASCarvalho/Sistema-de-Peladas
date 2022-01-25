@@ -6,6 +6,8 @@ import 'package:vpfut/components/rounded_outline_button.dart';
 import 'package:vpfut/components/rounded_password_field.dart';
 import 'package:vpfut/services/auth_service.dart';
 
+import '../../../repository/user_repository.dart';
+
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
@@ -20,7 +22,7 @@ class _BodyState extends State<Body> {
   var _isLoading = false;
   var _errorMessage = '';
 
-  submit(AuthService authService) async {
+  submit(AuthService authService, UserRepository userRepository) async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       setState(() {
@@ -28,7 +30,7 @@ class _BodyState extends State<Body> {
         _errorMessage = '';
       });
       try {
-        await authService.signIn(_email, _password);
+        await authService.signIn(_email, _password, userRepository);
         Navigator.of(context).pop();
       } catch (e) {
         setState(() {
@@ -45,6 +47,7 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final authService = Provider.of<AuthService>(context, listen: false);
+    final userRepository = Provider.of<UserRepository>(context, listen: false);
     return Center(
       child: Form(
         key: _formKey,
@@ -119,7 +122,7 @@ class _BodyState extends State<Body> {
                 : RoundedButton(
                     text: "Entrar",
                     onPressed: () {
-                      submit(authService);
+                      submit(authService, userRepository);
                     },
                   ),
             _isLoading

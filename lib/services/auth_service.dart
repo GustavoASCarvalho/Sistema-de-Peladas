@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:vpfut/repository/user_repository.dart';
+
 import '../models/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -14,6 +18,7 @@ class AuthService with ChangeNotifier {
   bool get logado => _loggedIn;
 
   Future<void> _signUpOrIn(
+    UserRepository userRepository,
     String email,
     String password, {
     bool register = false,
@@ -60,25 +65,33 @@ class AuthService with ChangeNotifier {
       throw Exception(msg);
     }
 
-    _user = User(
-      id: data['localId'],
-      email: email,
-      name: name,
-      phone: phone,
-      token: data['idToken'],
-      cpf: cpf,
-      cnpj: cnpj,
-      expiraEm: DateTime.now().add(
-        Duration(
-          seconds: int.parse(data['expiresIn']),
+    if (register) {
+      _user = User(
+        id: data['localId'],
+        email: email,
+        name: name,
+        phone: phone,
+        token: data['idToken'],
+        cpf: cpf,
+        cnpj: cnpj,
+        expiraEm: DateTime.now().add(
+          Duration(
+            seconds: int.parse(data['expiresIn']),
+          ),
         ),
-      ),
-    );
+      );
+
+      await userRepository.saveUser(_user!);
+    } else {
+      _user = await userRepository.searchById(data['localId']);
+    }
+
+    print(_user);
 
     _loggedIn = true;
 
-    print('logou');
-    print(_user);
+    debugPrint('logou');
+    debugPrint(_user!.toString());
 
     notifyListeners();
   }
@@ -90,8 +103,10 @@ class AuthService with ChangeNotifier {
     String phone,
     String cpf,
     String cnpj,
+    UserRepository userRepository,
   ) =>
       _signUpOrIn(
+        userRepository,
         email,
         senha,
         name: name,
@@ -101,7 +116,13 @@ class AuthService with ChangeNotifier {
         register: true,
       );
 
-  Future<void> signIn(String email, String senha) => _signUpOrIn(
+  Future<void> signIn(
+    String email,
+    String senha,
+    UserRepository userRepository,
+  ) =>
+      _signUpOrIn(
+        userRepository,
         email,
         senha,
       );

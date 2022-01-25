@@ -61,8 +61,8 @@ class User {
       email: map['email'] ?? '',
       name: map['name'] ?? '',
       phone: map['phone'] ?? '',
-      cpf: map['cpf'],
-      cnpj: map['cnpj'],
+      cpf: map['cpf'] ?? '',
+      cnpj: map['cnpj'] ?? '',
       token: map['token'] ?? '',
       expiraEm: DateTime.fromMillisecondsSinceEpoch(map['expiraEm']),
     );

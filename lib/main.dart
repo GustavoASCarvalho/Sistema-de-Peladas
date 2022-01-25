@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Vp Fut',
-          initialRoute: SoccerFieldRegisterScreen.routeName,
+          initialRoute: Splash.routeName,
           theme: ThemeData(
             primaryColor: kPrimaryColor,
             scaffoldBackgroundColor: kPrimaryLightColor,
