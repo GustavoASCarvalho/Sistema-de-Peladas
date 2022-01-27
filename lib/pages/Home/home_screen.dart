@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:vpfut/services/auth_service.dart';
 import 'package:vpfut/utils/constants.dart';
 
+import '../../repository/user_repository.dart';
 import 'components/body.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,12 +15,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     print('HomeScreen');
 
+    var users = Provider.of<UserRepository>(context, listen: false).loadUsers();
     var authServiceProvider = Provider.of<AuthService>(context, listen: false);
 
     var user = authServiceProvider.usuario;
-
-    debugPrint(user!.name);
-    debugPrint('$user');
+    print("usuario logado agora na homescreen>>");
+    print(user);
 
     return Scaffold(
       backgroundColor: kPrimaryLightColor,
@@ -36,7 +37,7 @@ class HomeScreen extends StatelessWidget {
             ),
             children: <TextSpan>[
               TextSpan(
-                text: authServiceProvider.logado ? user.name : 'erro',
+                text: 'jota',
                 style: const TextStyle(
                     fontWeight: FontWeight.bold, color: kPrimaryLightColor),
               ),

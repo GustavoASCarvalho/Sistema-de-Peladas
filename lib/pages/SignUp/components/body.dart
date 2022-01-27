@@ -7,6 +7,8 @@ import 'package:vpfut/components/rounded_password_field.dart';
 import 'package:vpfut/repository/user_repository.dart';
 import 'package:vpfut/services/auth_service.dart';
 
+import '../../../models/user.dart';
+
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
 
@@ -34,9 +36,14 @@ class _BodyState extends State<Body> {
       });
       try {
         await authService
-            .signUp(
-                _email, _password, _name, _phone, _cpf, _cnpj, userRepository)
-            .then((_) => {Navigator.of(context).pop()});
+            .signUp(_email, _password, _name, _phone, _cpf, _cnpj)
+            .then((value) => {
+                  if (value != null)
+                    {
+                      userRepository.saveUser(value),
+                    }
+                });
+        Navigator.of(context).pop();
       } catch (e) {
         setState(() {
           _errorMessage = e.toString();

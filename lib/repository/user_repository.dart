@@ -1,5 +1,6 @@
 import 'dart:collection';
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:vpfut/services/auth_service.dart';
@@ -25,44 +26,31 @@ class UserRepository with ChangeNotifier {
 
   List<User> get users => UnmodifiableListView(_users);
 
-  Future<User> searchById(String id) async {
-    await loadUsers();
-    return _users.firstWhere((user) => user.id == id);
+  Future<User> searchByEmail(String email) async {
+    return _users.firstWhere((user) => user.email == email);
   }
 
   loadUsers() async {
+    _users.clear();
     if (authService.logado) {
       final resp = await http.get(_getApiUrl());
 
       final data = json.decode(resp.body);
-
       data.forEach((key, value) {
         value['id'] = key;
-        _users.add(User.fromJson(value));
+        _users.add(User.fromMap(value));
       });
 
       notifyListeners();
     }
 
-    print('Usuários carregados');
+    print('Usuários carregados -> ${_users.length}');
     print(_users);
   }
 
-  Future _saveUser(User user) async {
+  Future<User> saveUser(User user) async {
     final resp = await http.post(_getApiUrl(), body: user.toJson());
 
-    return resp.body;
-  }
-
-  Future<User> saveUser(User user) async {
-    final data = await _saveUser(user);
-
-    final User userSaved = User.fromJson(data);
-
-    _users.add(userSaved);
-
-    notifyListeners();
-
-    return userSaved;
+    return user;
   }
 }

@@ -1,7 +1,3 @@
-import 'dart:developer';
-
-import 'package:vpfut/repository/user_repository.dart';
-
 import '../models/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -17,8 +13,13 @@ class AuthService with ChangeNotifier {
   User? get usuario => _user;
   bool get logado => _loggedIn;
 
-  Future<void> _signUpOrIn(
-    UserRepository userRepository,
+  User? setUser(User user) {
+    _user = user;
+    notifyListeners();
+    return _user;
+  }
+
+  Future<User?> _signUpOrIn(
     String email,
     String password, {
     bool register = false,
@@ -65,48 +66,36 @@ class AuthService with ChangeNotifier {
       throw Exception(msg);
     }
 
-    if (register) {
-      _user = User(
-        id: data['localId'],
-        email: email,
-        name: name,
-        phone: phone,
-        token: data['idToken'],
-        cpf: cpf,
-        cnpj: cnpj,
-        expiraEm: DateTime.now().add(
-          Duration(
-            seconds: int.parse(data['expiresIn']),
-          ),
+    _user = User(
+      id: data['localId'],
+      email: email,
+      name: name,
+      phone: phone,
+      token: data['idToken'],
+      cpf: cpf,
+      cnpj: cnpj,
+      expiraEm: DateTime.now().add(
+        Duration(
+          seconds: int.parse(data['expiresIn']),
         ),
-      );
-
-      await userRepository.saveUser(_user!);
-    } else {
-      _user = await userRepository.searchById(data['localId']);
-    }
-
-    print(_user);
+      ),
+    );
 
     _loggedIn = true;
-
-    debugPrint('logou');
-    debugPrint(_user!.toString());
-
     notifyListeners();
+
+    return _user;
   }
 
-  Future<void> signUp(
+  Future<User?> signUp(
     String email,
     String senha,
     String name,
     String phone,
     String cpf,
     String cnpj,
-    UserRepository userRepository,
   ) =>
       _signUpOrIn(
-        userRepository,
         email,
         senha,
         name: name,
@@ -116,13 +105,11 @@ class AuthService with ChangeNotifier {
         register: true,
       );
 
-  Future<void> signIn(
+  Future<User?> signIn(
     String email,
     String senha,
-    UserRepository userRepository,
   ) =>
       _signUpOrIn(
-        userRepository,
         email,
         senha,
       );
@@ -130,7 +117,7 @@ class AuthService with ChangeNotifier {
   logout() {
     _user = null;
     _loggedIn = false;
-    print('saiu');
+
     notifyListeners();
   }
 }
