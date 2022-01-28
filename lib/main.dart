@@ -7,6 +7,7 @@ import 'pages/Welcome/welcome_screen.dart';
 import 'pages/splash.dart';
 import 'pages/Home/home_screen.dart';
 import 'pages/SignUp/signup_screen.dart';
+import 'pages/MarkSoccer/mark_soccer_screen.dart';
 import 'pages/SoccerFieldRegister/soccer_field_register_screen.dart';
 
 import 'package:vpfut/repository/user_repository.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
             WelcomeScreen.routeName: (ctx) => const WelcomeScreen(),
             SignInScreen.routeName: (ctx) => const SignInScreen(),
             SignUpScreen.routeName: (ctx) => const SignUpScreen(),
+            MarkSoccerScrenn.routeName: (ctx) => const MarkSoccerScrenn(),
             SoccerFieldRegisterScreen.routeName: (ctx) =>
                 const SoccerFieldRegisterScreen(),
           },

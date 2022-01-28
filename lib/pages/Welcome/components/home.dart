@@ -18,9 +18,6 @@ class Home extends StatelessWidget {
             // });
           },
         ),
-        SizedBox(
-          height: size.height * 0.01,
-        ),
         RoundedOutlineButton(
           text: 'Cadastrar',
           onPressed: () {

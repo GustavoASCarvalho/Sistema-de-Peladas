@@ -23,6 +23,10 @@ class _BodyState extends State<Body> {
   var _url = '';
   var _isLoading = false;
   var _errorMessage = '';
+  //intervalo de cada partida
+  var _interval = 0;
+  //tempo entre partidas
+  var _timeBetween = 0;
 
   var _segunda = false;
   var _segundaBegin = TimeOfDay(hour: 8, minute: 30);

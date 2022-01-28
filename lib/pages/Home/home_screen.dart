@@ -15,12 +15,13 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     print('HomeScreen');
 
-    var users = Provider.of<UserRepository>(context, listen: false).loadUsers();
+    Provider.of<UserRepository>(context, listen: false).loadUsers();
     var authServiceProvider = Provider.of<AuthService>(context, listen: false);
 
-    var user = authServiceProvider.usuario;
+    var users = Provider.of<UserRepository>(context, listen: false).users;
+
     print("usuario logado agora na homescreen>>");
-    print(user);
+    print(users);
 
     return Scaffold(
       backgroundColor: kPrimaryLightColor,
@@ -37,7 +38,7 @@ class HomeScreen extends StatelessWidget {
             ),
             children: <TextSpan>[
               TextSpan(
-                text: 'jota',
+                text: 'sd',
                 style: const TextStyle(
                     fontWeight: FontWeight.bold, color: kPrimaryLightColor),
               ),

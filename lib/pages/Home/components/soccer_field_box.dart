@@ -79,8 +79,15 @@ class SoccerFieldBox extends StatelessWidget {
                     ),
                     Text(date),
                     RoundedButton(
-                      text: 'Ver',
-                      onPressed: () {},
+                      text: 'Marcar horário',
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/markSoccerScreen',
+                            arguments: {
+                              'imageUrl': imageUrl,
+                              'title': title,
+                              'description': address,
+                            });
+                      },
                       textColor: kPrimaryLightColor,
                     ),
                   ],
