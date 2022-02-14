@@ -42,6 +42,7 @@ class AuthService with ChangeNotifier {
       url,
       body: json.encode(
         {
+          'displayName': name,
           'email': email,
           'password': password,
           'returnSecureToken': true,
